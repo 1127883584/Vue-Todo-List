@@ -13,15 +13,15 @@
         <Input type="text" size="large" class="div-body-input" v-model="itemName"></Input>
         <Button type="primary" size="large" class="div-body-add-button" @click="addItem">Add</Button>
         <div class="div-body-data-table">
-          <ol class="div-body-data-table-ol">
-            <li class="div-body-data-table-ol-li" v-for="(el, index) in items" :key="index"><Checkbox v-model="el.isSelected" size="large" class="div-body-data-table-ol-li-checkbox">{{el.itemName}}</Checkbox></li>
-          </ol>
+          <dl class="div-body-data-table-dl">
+            <dt class="div-body-data-table-dl-dt" v-for="(el, index) in itemsByStatus" :key="index">{{index + 1}}. <Checkbox v-model="el.isSelected" size="large" class="div-body-data-table-dl-dt-checkbox">{{el.itemName}}</Checkbox></dt>
+          </dl>
         </div>
       </div>
       <div class="div-footer">
-        <Button size="large" class="div-footer-button" >All</Button>
-        <Button size="large" class="div-footer-button" >Active</Button>
-        <Button size="large" class="div-footer-button-complete" >Complete</Button>
+        <Button size="large" class="div-footer-button" @click="filterItems(1)">All</Button>
+        <Button size="large" class="div-footer-button" @click="filterItems(2)">Active</Button>
+        <Button size="large" class="div-footer-button-complete" @click="filterItems(3)">Complete</Button>
       </div>
     </Card>
   </div>
@@ -34,16 +34,33 @@ export default {
     return {
       single: false,
       items: [],
-      itemName: ''
+      itemsByStatus: [],
+      itemName: '',
+      tableStatus: 1,
     }
   },
   methods: {
     addItem() {
       let item = {
         itemName: this.itemName,
-        isSelected: false
+        isSelected: this.tableStatus === 3 ? true : false
       };
       this.items.push(item);
+      this.itemsByStatus.push(item);
+    },
+    filterItems(status) {
+      this.tableStatus = status;
+      if (status === 1) {
+        this.itemsByStatus = JSON.parse(JSON.stringify(this.items));
+      } else if (status === 2) {
+        this.itemsByStatus = this.items.filter((item) => {
+          return !item.isSelected;
+        })
+      } else if (status === 3) {
+        this.itemsByStatus = this.items.filter((item) => {
+          return item.isSelected;
+        })
+      }
     }
   }
 }
