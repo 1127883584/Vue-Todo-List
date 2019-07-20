@@ -14,7 +14,13 @@
         <Button type="primary" size="large" class="div-body-add-button" @click="addItem">Add</Button>
         <div class="div-body-data-table">
           <dl class="div-body-data-table-dl">
-            <dt class="div-body-data-table-dl-dt" v-for="(el, index) in itemsByStatus" :key="index">{{index + 1}}. <Checkbox v-model="el.isSelected" size="large" class="div-body-data-table-dl-dt-checkbox">{{el.itemName}}</Checkbox></dt>
+            <dt class="div-body-data-table-dl-dt" v-for="(el, index) in itemsByStatus" :key="index">{{index + 1}}.
+              <Checkbox v-model="el.isSelected" size="large" class="div-body-data-table-dl-dt-checkbox">
+                <span v-if="!el.isEditing" @dblclick="editItemName(index)">
+                  {{el.itemName}}
+                </span>
+                <Input v-else v-model="el.itemName" :autofocus="true" class="div-body-data-table-dl-dt-input" size="small" @on-blur="itemInputOnBlur(index)" @on-enter="itemInputOnBlur(index)"></Input>
+              </Checkbox></dt>
           </dl>
         </div>
       </div>
@@ -41,12 +47,18 @@ export default {
   },
   methods: {
     addItem() {
-      let item = {
-        itemName: this.itemName,
-        isSelected: this.tableStatus === 3 ? true : false
-      };
-      this.items.push(item);
-      this.itemsByStatus.push(item);
+      if (this.itemName !== '') {
+        let item = {
+          itemName: this.itemName,
+          isSelected: this.tableStatus === 3 ? true : false,
+          isEditing: false
+        };
+        this.items.push(item);
+        this.itemsByStatus.push(item);
+        this.itemName = '';
+      } else {
+        this.$Message.error('Can not add a null item');
+      }
     },
     filterItems(status) {
       this.tableStatus = status;
@@ -61,6 +73,12 @@ export default {
           return item.isSelected;
         })
       }
+    },
+    editItemName(index) {
+      this.itemsByStatus[index].isEditing = true;
+    },
+    itemInputOnBlur(index) {
+      this.itemsByStatus[index].isEditing = false;
     }
   }
 }

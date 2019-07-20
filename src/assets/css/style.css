@@ -90,3 +90,8 @@
     width:100px;
     margin-right: 50px;
 }
+
+.div-body-data-table-dl-dt-input{
+    width: auto !important;
+    top: -2px;
+}
