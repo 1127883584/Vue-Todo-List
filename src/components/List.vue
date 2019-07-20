@@ -10,12 +10,11 @@
         </div>
       </div>
       <div class="div-body">
-        <Input type="text" size="large" class="div-body-input"></Input>
-        <Button type="primary" size="large" class="div-body-add-button">Add</Button>
+        <Input type="text" size="large" class="div-body-input" v-model="itemName"></Input>
+        <Button type="primary" size="large" class="div-body-add-button" @click="addItem">Add</Button>
         <div class="div-body-data-table">
           <ol class="div-body-data-table-ol">
-            <li class="div-body-data-table-ol-li"><Checkbox v-model="single" size="large" class="div-body-data-table-ol-li-checkbox">Checkbox</Checkbox></li>
-            <li class="div-body-data-table-ol-li"><Checkbox v-model="single" size="large" class="div-body-data-table-ol-li-checkbox">Checkbox</Checkbox></li>
+            <li class="div-body-data-table-ol-li" v-for="(el, index) in items" :key="index"><Checkbox v-model="el.isSelected" size="large" class="div-body-data-table-ol-li-checkbox">{{el.itemName}}</Checkbox></li>
           </ol>
         </div>
       </div>
@@ -33,7 +32,18 @@ export default {
   name: 'List',
   data () {
     return {
-      single: false
+      single: false,
+      items: [],
+      itemName: ''
+    }
+  },
+  methods: {
+    addItem() {
+      let item = {
+        itemName: this.itemName,
+        isSelected: false
+      };
+      this.items.push(item);
     }
   }
 }
