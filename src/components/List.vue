@@ -10,23 +10,9 @@
         </div>
       </div>
       <div class="div-body">
-        <Input type="text" size="large" class="div-body-input" v-model="itemName"></Input>
+        <Input type="text" size="large" class="div-body-input" v-model="itemName" @on-enter="addItem"/>
         <Button type="primary" size="large" class="div-body-add-button" @click="addItem">Add</Button>
-        <div class="div-body-data-table">
-          <dl class="div-body-data-table-dl">
-            <dt class="div-body-data-table-dl-dt" v-for="(el, index) in itemsByStatus" :key="index">
-              <span class="div-body-data-table-dl-dt-del" v-if="el.isSelected">{{index + 1}}. </span>
-              <span v-else>{{index + 1}}. </span>
-              <Checkbox v-model="el.isSelected" size="large" class="div-body-data-table-dl-dt-checkbox">
-              </Checkbox>
-              <span v-if="!el.isEditing" @dblclick="editItemName(index)">
-                  <del class="div-body-data-table-dl-dt-del" v-if="el.isSelected">{{el.itemName}}</del>
-                  <span v-else>{{el.itemName}}</span>
-                </span>
-              <Input v-else v-model="el.itemName" :autofocus="true" class="div-body-data-table-dl-dt-input" size="small" @on-blur="itemInputOnBlur(index)" @on-enter="itemInputOnBlur(index)"></Input>
-            </dt>
-          </dl>
-        </div>
+        <Item :items="itemsByStatus"></Item>
       </div>
       <div class="div-footer">
         <Button size="large" class="div-footer-button" @click="filterItems(1)">All</Button>
@@ -38,6 +24,7 @@
 </template>
 
 <script>
+import Item from './Item.vue'
 export default {
   name: 'List',
   data () {
@@ -49,40 +36,27 @@ export default {
       tableStatus: 1,
     }
   },
+  components: {
+    Item: Item
+  },
   methods: {
     addItem() {
       if (this.itemName !== '') {
         let item = {
+          id: this.$store.state.items.length,
           itemName: this.itemName,
-          isSelected: this.tableStatus === 3 ? true : false,
-          isEditing: false
+          isSelected: false,
+          isEditing: false,
+          isShow: true
         };
-        this.items.push(item);
-        this.itemsByStatus.push(item);
+        this.$store.commit('addItem', item);
         this.itemName = '';
       } else {
         this.$Message.error('Can not add a null item');
       }
     },
     filterItems(status) {
-      this.tableStatus = status;
-      if (status === 1) {
-        this.itemsByStatus = JSON.parse(JSON.stringify(this.items));
-      } else if (status === 2) {
-        this.itemsByStatus = this.items.filter((item) => {
-          return !item.isSelected;
-        })
-      } else if (status === 3) {
-        this.itemsByStatus = this.items.filter((item) => {
-          return item.isSelected;
-        })
-      }
-    },
-    editItemName(index) {
-      this.itemsByStatus[index].isEditing = true;
-    },
-    itemInputOnBlur(index) {
-      this.itemsByStatus[index].isEditing = false;
+      this.$store.commit('changeShow', status)
     }
   }
 }
