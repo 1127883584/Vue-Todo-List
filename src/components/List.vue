@@ -18,12 +18,13 @@
               <span class="div-body-data-table-dl-dt-del" v-if="el.isSelected">{{index + 1}}. </span>
               <span v-else>{{index + 1}}. </span>
               <Checkbox v-model="el.isSelected" size="large" class="div-body-data-table-dl-dt-checkbox">
-                <span v-if="!el.isEditing" @dblclick="editItemName(index)">
+              </Checkbox>
+              <span v-if="!el.isEditing" @dblclick="editItemName(index)">
                   <del class="div-body-data-table-dl-dt-del" v-if="el.isSelected">{{el.itemName}}</del>
                   <span v-else>{{el.itemName}}</span>
                 </span>
-                <Input v-else v-model="el.itemName" :autofocus="true" class="div-body-data-table-dl-dt-input" size="small" @on-blur="itemInputOnBlur(index)" @on-enter="itemInputOnBlur(index)"></Input>
-              </Checkbox></dt>
+              <Input v-else v-model="el.itemName" :autofocus="true" class="div-body-data-table-dl-dt-input" size="small" @on-blur="itemInputOnBlur(index)" @on-enter="itemInputOnBlur(index)"></Input>
+            </dt>
           </dl>
         </div>
       </div>
