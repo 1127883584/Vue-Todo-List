@@ -3,6 +3,7 @@ const mutations = {
         state.items.push(status);
     },
     changeShow(state, status) {
+        console.log(JSON.stringify(state.items))
         state.tableStatus = status
         if (status === 1) {
             for (let i = 0; i < state.items.length; i++) {

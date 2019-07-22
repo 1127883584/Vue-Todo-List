@@ -12,7 +12,7 @@
       <div class="div-body">
         <Input type="text" size="large" class="div-body-input" v-model="itemName" @on-enter="addItem"/>
         <Button type="primary" size="large" class="div-body-add-button" @click="addItem">Add</Button>
-        <Item :items="itemsByStatus"></Item>
+        <Item></Item>
       </div>
       <div class="div-footer">
         <Button size="large" class="div-footer-button" @click="filterItems(1)">All</Button>
@@ -29,9 +29,6 @@ export default {
   name: 'List',
   data () {
     return {
-      single: false,
-      items: [],
-      itemsByStatus: [],
       itemName: '',
       tableStatus: 1,
     }
