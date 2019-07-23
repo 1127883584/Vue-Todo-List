@@ -166,5 +166,6 @@
 }
 
 .div-body-data-table-dl-dt-delete-btn{
-    
+    float: right;
+    margin-right: 8px;
 }
