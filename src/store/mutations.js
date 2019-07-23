@@ -31,6 +31,9 @@ const mutations = {
                 state.items[i].isEditing = payload.isEdit;
             }
         }
+    },
+    updateUserName(state, payload) {
+       state.username = payload
     }
 }
 

@@ -21,6 +21,14 @@ const actions = {
         }).catch((response)=>{
             console.log(response)
         })
+    },
+    async deleteItem({ commit }, payload){
+        await axios.delete('http://localhost:3001/todos/' + payload.id).then((response)=>{
+            console.log(response.data)
+            commit('deleteItem', response.data)
+        }).catch((response)=>{
+            console.log(response)
+        })
     }
 }
 

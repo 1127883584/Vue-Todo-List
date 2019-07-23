@@ -12,6 +12,7 @@
                       <span v-else>{{el.itemName}}</span>
                     </span>
                     <Input v-else v-model="el.itemName" ref="contentInput" :autofocus="el.isEditing" class="div-body-data-table-dl-dt-input" size="small" @on-blur="itemInputOnBlur(el)" @on-enter="itemInputOnBlur(el)"/>
+                    <Button class="div-body-data-table-dl-dt-delete-btn">sad</Button>
                 </dt>
             </dl>
         </div>

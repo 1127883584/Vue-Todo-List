@@ -15,7 +15,8 @@
         },
         methods: {
             enterList(){
-                this.$router.push({name: 'home', params: {username: this.username}})
+                this.$router.push({name: 'home', params: {username: this.username}});
+                this.$store.commit('updateUserName', this.username);
             }
         }
     }

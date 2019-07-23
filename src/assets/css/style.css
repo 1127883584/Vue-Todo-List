@@ -26,7 +26,6 @@
 
 .div-header{
     margin-top: 30px;
-    margin-left: 45px;
 }
 
 .div-header-title{
@@ -137,9 +136,35 @@
 }
 
 .menu-item-list{
-    margin-top: 15px;
+
 }
 
 .home-left-menu{
     height: 100%;
+}
+
+.row-home{
+    height: 100% !important;
+}
+
+.row-col{
+    height: 100%;
+}
+
+.div-header{
+    margin-top: 100px;
+}
+
+.div-header-avatar{
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 100px !important;
+}
+
+.div-body-mine{
+    font-size: 20px;
+}
+
+.div-body-data-table-dl-dt-delete-btn{
+    
 }
