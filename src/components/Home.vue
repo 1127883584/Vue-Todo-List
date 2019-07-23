@@ -1,18 +1,42 @@
 <template>
-  <div>
-    <Card class="div-card">
-      <div class="div-header">
-        <TodoTitle></TodoTitle>
-      </div>
-      <div class="div-body">
-        <AddTodo></AddTodo>
-        <Item></Item>
-      </div>
-      <div class="div-footer">
-        <TabGroup></TabGroup>
-      </div>
-    </Card>
-  </div>
+  <Row>
+    <Col span="8">
+      <Menu class="home-left-menu">
+        <MenuItem name="list" class="menu-item-list">TodoList列表</MenuItem>
+        <MenuItem name="mine" class="menu-item-mine">>我的</MenuItem>
+      </Menu>
+    </Col>
+    <Col span="8">
+
+    </Col>
+    <Col span="8">
+
+    </Col>
+  </Row>
+<!--  <div>-->
+<!--    -->
+
+
+<!--    <div class="div-back"><Button type="primary" @click="openBackModal">Back</Button></div>-->
+<!--    <div class="div-username"><span>{{$route.params.username}}</span></div>-->
+<!--    <Card class="div-card">-->
+<!--      <div class="div-header">-->
+<!--        <TodoTitle></TodoTitle>-->
+<!--      </div>-->
+<!--      <div class="div-body">-->
+<!--        <AddTodo></AddTodo>-->
+<!--        <Item></Item>-->
+<!--      </div>-->
+<!--      <div class="div-footer">-->
+<!--        <TabGroup></TabGroup>-->
+<!--      </div>-->
+<!--    </Card>-->
+<!--    <Modal-->
+<!--        v-model="confirmModel"-->
+<!--        @on-ok="back">-->
+<!--      <p class="modal-body-p">Do you want to go back to the previous component?</p>-->
+<!--    </Modal>-->
+<!--  </div>-->
 </template>
 
 <script>
@@ -26,6 +50,7 @@ export default {
     return {
       itemName: '',
       tableStatus: 1,
+      confirmModel: false
     }
   },
   components: {
@@ -51,11 +76,19 @@ export default {
       }
     },
     filterItems(status) {
-      this.$store.commit('changeShow', status)
+      this.$store.commit('changeShow', status);
+    },
+    openBackModal() {
+      this.confirmModel = true;
+    },
+    back() {
+      this.$router.go(-1);
     }
   },
   mounted() {
-    this.$store.dispatch('initItem');
+    if (this.$store.state.items.length === 0 ) {
+      this.$store.dispatch('initItem');
+    }
   }
 }
 </script>

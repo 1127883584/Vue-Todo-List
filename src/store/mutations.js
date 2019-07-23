@@ -1,9 +1,8 @@
 const mutations = {
-    addItem(state, status) {
-        state.items.push(status);
+    addItem(state, payload) {
+        state.items.push(...payload);
     },
     changeShow(state, status) {
-        console.log(JSON.stringify(state.items))
         state.tableStatus = status
         if (status === 1) {
             for (let i = 0; i < state.items.length; i++) {
@@ -19,13 +18,20 @@ const mutations = {
             }
         }
     },
-    changeItemIsEditing(state, status) {
+    updateItem(state, payload) {
         for (let i = 0; i < state.items.length; i++) {
-            if (state.items[i].id === status.el.id) {
-                state.items[i].isEditing = status.isEdit;
+            if (state.items[i].id === payload.id) {
+                state.items[i] = payload;
             }
         }
     },
+    changeItemIsEditing(state, payload) {
+        for (let i = 0; i < state.items.length; i++) {
+            if (state.items[i].id === payload.el.id) {
+                state.items[i].isEditing = payload.isEdit;
+            }
+        }
+    }
 }
 
 export default mutations

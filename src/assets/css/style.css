@@ -70,6 +70,7 @@
 
 .div-body-data-table-dl-dt{
     height: 40px;
+    line-height: 40px;
 }
 
 .div-body-data-table-dl-dt-checkbox{
@@ -99,4 +100,46 @@
 
 .div-body-data-table-dl-dt-del{
     color: #999;
+}
+
+.button-selected{
+    color: #2d8cf0 !important;
+    border: 1px solid #2d8cf0 !important;
+}
+
+.main-div{
+    margin: 200px auto;
+    width: 500px;
+}
+
+.main-div-input{
+    width: 200px !important;
+    margin-right: 15px;
+}
+
+.div-back{
+    float: left;
+    margin-left: 20px;
+}
+
+.div-username{
+    float: right;
+    font-size: 20px;
+    margin-right: 20px;
+    /*width: 100px;*/
+    /*height: 100px;*/
+    margin-left: 20px;
+}
+
+.modal-body-p{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.menu-item-list{
+    margin-top: 15px;
+}
+
+.home-left-menu{
+    height: 100%;
 }

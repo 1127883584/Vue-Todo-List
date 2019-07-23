@@ -1,16 +1,13 @@
 <template>
   <div id="app" style="background-color:#eee;position: fixed;width: 100%;height: 100%;">
-    <List/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import List from './components/List.vue'
+
 export default {
-  name: 'app',
-  components: {
-    List
-  }
+  name: 'app'
 }
 </script>
 

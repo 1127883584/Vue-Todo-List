@@ -1,6 +1,6 @@
 const state = {
     items: [],
-    tableStatus: 1
+    tableStatus: 0
 }
 
 export default state
