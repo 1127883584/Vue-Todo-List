@@ -1,7 +1,5 @@
 <template>
       <div>
-        <div class="div-back"><Button type="primary" @click="openBackModal">Back</Button></div>
-        <div class="div-username"><span>{{$store.state.username}}</span></div>
         <Card class="div-card">
           <div class="div-header">
             <TodoTitle></TodoTitle>
@@ -60,12 +58,6 @@
             },
             filterItems(status) {
                 this.$store.commit('changeShow', status);
-            },
-            openBackModal() {
-                this.confirmModel = true;
-            },
-            back() {
-                this.$router.push({name: 'main'});
             }
         },
         mounted() {
