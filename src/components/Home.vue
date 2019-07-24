@@ -7,13 +7,13 @@
         <span class="row-home-header-span">{{$store.state.username}}</span>
       </div>
     </div>
-    <Col span="4" class="row-col">
+    <Col span="4" class="row-col" :xs="{ span: 0, offset: 0 }" :lg="{ span: 6, offset: 0 }">
       <Menu class="home-left-menu" @on-select="selectMenuItem" active-name="list">
         <MenuItem name="list" class="menu-item-list">TodoList列表</MenuItem>
         <MenuItem name="mine" class="menu-item-mine">我的</MenuItem>
       </Menu>
     </Col>
-    <Col span="20">
+    <Col span="20" :xs="{ span: 24, offset: 0 }" :lg="{ span: 18, offset: 0 }">
       <router-view></router-view>
     </Col>
     <Modal
@@ -54,9 +54,6 @@ export default {
     back() {
       this.$router.push({name: 'main'});
     }
-  },
-  mounted() {
-    this.$router.push({name: 'list', params: this.$route.params})
   }
 }
 </script>

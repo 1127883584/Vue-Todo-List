@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Input type="text" size="large" class="div-body-input" v-model="itemName" @on-enter="addItem"/>
+        <Input type="text" size="large" :autofocus="true" class="div-body-input" v-model="itemName" @on-enter="addItem"/>
         <Button type="primary" size="large" class="div-body-add-button" @click="addItem">Add</Button>
     </div>
 </template>

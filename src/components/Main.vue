@@ -1,6 +1,6 @@
 <template>
     <div class="main-div">
-        <Input placeholder="please input your name" class="main-div-input" v-model="username" @on-enter="enterList"/>
+        <Input placeholder="please input your name" :autofocus="true" class="main-div-input" v-model="username" @on-enter="enterList"/>
         <Button type="primary" @click="enterList">start use</Button>
     </div>
 </template>

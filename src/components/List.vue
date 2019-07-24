@@ -12,11 +12,6 @@
             <TabGroup></TabGroup>
           </div>
         </Card>
-        <Modal
-            v-model="confirmModel"
-            @on-ok="back">
-          <p class="modal-body-p">Do you want to go back to the previous component?</p>
-        </Modal>
       </div>
 </template>
 

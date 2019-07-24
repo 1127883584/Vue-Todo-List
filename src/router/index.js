@@ -17,7 +17,8 @@ const router = new VueRouter({
             children: [
                 {path: '/List', component: List, name: 'list'},
                 {path: '/Mine', component: Mine, name: 'mine'}
-            ]
+            ],
+            redirect: '/List'
         }
     ]
 })
